@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository("professionRepository")
-public interface ProfessionReposiotory extends JpaRepository<Profession, Integer> {
+public interface ProfessionRepository extends JpaRepository<Profession, Integer> {
 
     Profession findByName(String name);
 }
