@@ -52,12 +52,12 @@ public class LoginController {
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("login");
 			
 		}
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
