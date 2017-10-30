@@ -1,8 +1,9 @@
-package com.freelancerworld.service;
+package com.freelancerworld.service.Implementation;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+import com.freelancerworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import com.freelancerworld.repository.RoleRepository;
 import com.freelancerworld.repository.UserRepository;
 
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;

@@ -1,7 +1,8 @@
-package com.freelancerworld.service;
+package com.freelancerworld.service.Implementation;
 
 import com.freelancerworld.model.Address;
 import com.freelancerworld.repository.AddressRepository;
+import com.freelancerworld.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

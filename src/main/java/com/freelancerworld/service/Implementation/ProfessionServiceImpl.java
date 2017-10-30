@@ -1,7 +1,8 @@
-package com.freelancerworld.service;
+package com.freelancerworld.service.Implementation;
 
 import com.freelancerworld.model.Profession;
 import com.freelancerworld.repository.ProfessionRepository;
+import com.freelancerworld.service.ProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service("professionService")
-public class ProfessionServiceImpl implements ProfessionService{
+public class ProfessionServiceImpl implements ProfessionService {
 
     @Autowired
     private ProfessionRepository professionRepository;
