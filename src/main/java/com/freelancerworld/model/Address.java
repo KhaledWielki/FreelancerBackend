@@ -33,6 +33,10 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public int getId() {
         return id;
     }
@@ -87,5 +91,13 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

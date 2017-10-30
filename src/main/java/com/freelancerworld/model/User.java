@@ -1,5 +1,6 @@
 package com.freelancerworld.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -47,6 +48,9 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_profession", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "profession_id"))
 	private Set<Profession> professions;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Address> addresses;
 
 
 	public int getId() {
@@ -111,5 +115,13 @@ public class User {
 
 	public void setProfessions(Set<Profession> professions) {
 		this.professions = professions;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 }
