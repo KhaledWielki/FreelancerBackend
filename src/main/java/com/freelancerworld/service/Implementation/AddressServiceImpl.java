@@ -16,7 +16,11 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-
+/**TODO
+ *
+ * Dodać funkcjonalność poniższych metod:
+ *
+ */
     @Override
     public Address findAddressByCityAndStreetAndBuildingNumber(String city, String street, String buildingNumber) {
         return null;
