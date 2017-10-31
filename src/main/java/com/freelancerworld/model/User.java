@@ -131,4 +131,20 @@ public class User {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+
+	public List<OrderMaker> getOrderMakers() {
+		return orderMakers;
+	}
+
+	public void setOrderMakers(List<OrderMaker> orderMakers) {
+		this.orderMakers = orderMakers;
+	}
+
+	public List<OrderTaker> getOrderTakers() {
+		return orderTakers;
+	}
+
+	public void setOrderTakers(List<OrderTaker> orderTakers) {
+		this.orderTakers = orderTakers;
+	}
 }
