@@ -16,9 +16,11 @@ public class Profession{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "profession_id")
     private int id;
+
     @Column(name = "name")
     @NotEmpty(message = "Please add profession name")
     private String name;
+
     @Column(name = "description")
     private String description;
 
