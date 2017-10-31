@@ -16,23 +16,17 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-/**TODO
- *
- * Dodać funkcjonalność poniższych metod:
- *
- */
     @Override
-    public Address findAddressByCityAndStreetAndBuildingNumber(String city, String street, String buildingNumber) {
-        return null;
-    }
-
-    @Override
-    public Address findAddressByCityAndStreetAndBuildingNumberAndOccupationNumber(String city, String street, String buildingNumber, String occupationNumber) {
-        return null;
+    public Address findAddress(String city, String street, String buildingNumber, String occupationNumber) {
+        return addressRepository.findAddressByCityAndStreetAndBuildingNumberAndOccupationNumber(city, street, buildingNumber, occupationNumber);
     }
 
     @Override
     public void saveAddress(Address address) {
-
+        addressRepository.save(address);
     }
+
+
+
+
 }
