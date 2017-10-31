@@ -1,6 +1,7 @@
 package com.freelancerworld.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by AdamR on 2017-10-30.
@@ -32,6 +33,9 @@ public class Address {
 
     @Column(name = "postal_code")
     private String postalCode;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+    private List<Request> requests;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -99,5 +103,13 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 }
