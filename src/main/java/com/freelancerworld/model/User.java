@@ -52,6 +52,13 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Address> addresses;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<OrderMaker> orderMakers;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<OrderTaker> orderTakers;
+
+
 
 	public int getId() {
 		return id;
