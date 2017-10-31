@@ -147,4 +147,6 @@ public class User {
 	public void setOrderTakers(List<OrderTaker> orderTakers) {
 		this.orderTakers = orderTakers;
 	}
+
+
 }
