@@ -2,6 +2,7 @@ package com.freelancerworld.service.Implementation;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import com.freelancerworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class UserServiceImpl implements UserService {
 	public void addAdminPermissions(User user) {
 		Role adminRole = roleRepository.findByRole("ADMIN");
 		user.setRoles(new HashSet<Role>(Arrays.asList(adminRole)));
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 }
