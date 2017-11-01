@@ -9,4 +9,5 @@ public interface UserService {
 	public void saveUser(User user);
 	public void addAdminPermissions(User user);
 	public List<User> findAll();
+	public User findUserByEmailAndPassword(String email, String password);
 }

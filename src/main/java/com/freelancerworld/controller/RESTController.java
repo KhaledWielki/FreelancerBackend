@@ -3,8 +3,8 @@ package com.freelancerworld.controller;
 import com.freelancerworld.model.User;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,12 +17,15 @@ import java.util.List;
 public class RESTController {
 
     @Autowired
-    private UserServiceImpl UserService;
+    private UserServiceImpl userService;
 
     @RequestMapping("/getget")
     public List<User> findAll() {
-        return UserService.findAll();
+        return userService.findAll();
     }
 
-
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public @ResponseBody User signIn(@RequestBody User user) {
+        return userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+    }
 }
