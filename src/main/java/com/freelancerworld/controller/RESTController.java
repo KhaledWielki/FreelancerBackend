@@ -28,4 +28,14 @@ public class RESTController {
     public @ResponseBody User signIn(@RequestBody User user) {
         return userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
     }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public @ResponseBody User register(@RequestBody User user) {
+        User userExists = userService.findUserByEmail(user.getEmail());
+        if (userExists == null) {
+            userService.saveUser(user);
+        }
+
+        return userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+    }
 }
