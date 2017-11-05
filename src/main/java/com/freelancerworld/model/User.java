@@ -49,8 +49,15 @@ public class User {
 	@JoinTable(name = "user_profession", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "profession_id"))
 	private Set<Profession> professions;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_request", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
+	private Set<Request> requestsSet;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Address> addresses;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Request> requestList;
 
 	public int getId() {
 		return id;
@@ -122,5 +129,22 @@ public class User {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+
+	public Set<Request> getRequestsSet() {
+		return requestsSet;
+	}
+
+	public void setRequestsSet(Set<Request> requestsSet) {
+		this.requestsSet = requestsSet;
+	}
+
+	public List<Request> getRequestList() {
+		return requestList;
+	}
+
+	public void setRequestList(List<Request> requestList) {
+		this.requestList = requestList;
 	}
 }

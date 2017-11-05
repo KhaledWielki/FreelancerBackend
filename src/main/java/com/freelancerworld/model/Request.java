@@ -41,6 +41,9 @@ public class Request {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public long getId() {
         return id;
