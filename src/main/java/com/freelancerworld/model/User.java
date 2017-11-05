@@ -52,14 +52,6 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Address> addresses;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<RequestMaker> requestMakers;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<RequestTaker> requestTakers;
-
-
-
 	public int getId() {
 		return id;
 	}
@@ -130,21 +122,5 @@ public class User {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
-	}
-
-	public List<RequestMaker> getRequestMakers() {
-		return requestMakers;
-	}
-
-	public void setRequestMakers(List<RequestMaker> requestMakers) {
-		this.requestMakers = requestMakers;
-	}
-
-	public List<RequestTaker> getRequestTakers() {
-		return requestTakers;
-	}
-
-	public void setRequestTakers(List<RequestTaker> requestTakers) {
-		this.requestTakers = requestTakers;
 	}
 }
