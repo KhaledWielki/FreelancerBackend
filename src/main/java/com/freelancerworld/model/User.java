@@ -53,10 +53,10 @@ public class User {
 	private List<Address> addresses;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<OrderMaker> orderMakers;
+	private List<RequestMaker> requestMakers;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<OrderTaker> orderTakers;
+	private List<RequestTaker> requestTakers;
 
 
 
@@ -132,21 +132,19 @@ public class User {
 		this.addresses = addresses;
 	}
 
-	public List<OrderMaker> getOrderMakers() {
-		return orderMakers;
+	public List<RequestMaker> getRequestMakers() {
+		return requestMakers;
 	}
 
-	public void setOrderMakers(List<OrderMaker> orderMakers) {
-		this.orderMakers = orderMakers;
+	public void setRequestMakers(List<RequestMaker> requestMakers) {
+		this.requestMakers = requestMakers;
 	}
 
-	public List<OrderTaker> getOrderTakers() {
-		return orderTakers;
+	public List<RequestTaker> getRequestTakers() {
+		return requestTakers;
 	}
 
-	public void setOrderTakers(List<OrderTaker> orderTakers) {
-		this.orderTakers = orderTakers;
+	public void setRequestTakers(List<RequestTaker> requestTakers) {
+		this.requestTakers = requestTakers;
 	}
-
-
 }

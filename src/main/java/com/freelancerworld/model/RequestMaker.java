@@ -9,12 +9,12 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "order_taker")
-public class OrderTaker {
+@Table(name = "request_maker")
+public class RequestMaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_taker_id")
+    @Column(name = "request_maker_id")
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
