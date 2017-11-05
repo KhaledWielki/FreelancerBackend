@@ -37,10 +37,6 @@ public class Address {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
     private List<Request> requests;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
     public int getId() {
         return id;
     }
@@ -95,14 +91,6 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Request> getRequests() {

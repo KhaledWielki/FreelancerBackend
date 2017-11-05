@@ -54,9 +54,6 @@ public class User {
 	private Set<Request> requestsSet;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Address> addresses;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Request> requestList;
 
 	public int getId() {
@@ -122,15 +119,6 @@ public class User {
 	public void setProfessions(Set<Profession> professions) {
 		this.professions = professions;
 	}
-
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
 
 	public Set<Request> getRequestsSet() {
 		return requestsSet;
