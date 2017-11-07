@@ -3,7 +3,10 @@ package com.freelancerworld.service.Implementation;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.freelancerworld.model.Profession;
+import com.freelancerworld.repository.ProfessionRepository;
 import com.freelancerworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,12 +24,19 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	@Autowired
     private RoleRepository roleRepository;
+	@Autowired
+	private ProfessionRepository professionRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public User findUserById(int id) {
+		return userRepository.findById(id);
 	}
 
 	@Override
@@ -40,6 +50,17 @@ public class UserServiceImpl implements UserService {
         user.setActive(1);
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		userRepository.save(user);
+	}
+
+	@Override
+	public void updateProfession(User user) {
+		Set<Profession> professions = new HashSet<Profession>();
+		professions = user.getProfessions();
+
+
+		Profession userProfession = professionRepository.findByName("Stolarz");
+		user.setProfessions(new HashSet<Profession>(Arrays.asList(userProfession)));
 		userRepository.save(user);
 	}
 

@@ -3,7 +3,6 @@ package com.freelancerworld.controller;
 import com.freelancerworld.model.User;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +37,19 @@ public class RESTUserController {
         if (userExists == null) {
             userService.saveUser(user);
         }
+    }
+
+    @RequestMapping(value = "/findbyid", method = RequestMethod.POST)
+    public @ResponseBody User findById(@RequestBody User user) {
+        return userService.findUserById(user.getId());
+    }
+
+    @RequestMapping(value = "/professionadd", method = RequestMethod.PUT)
+    public @ResponseBody User addProfession(@RequestBody User user) {
+        User tempUser = userService.findUserById(user.getId());
+        tempUser.setProfessions(user.getProfessions());
+        userService.updateProfession(tempUser);
+
+        return userService.findUserById(user.getId());
     }
 }
