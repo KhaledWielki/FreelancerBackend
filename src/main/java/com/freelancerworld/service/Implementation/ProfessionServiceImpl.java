@@ -6,6 +6,8 @@ import com.freelancerworld.service.ProfessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by AdamR on 2017-10-29.
  */
@@ -24,5 +26,10 @@ public class ProfessionServiceImpl implements ProfessionService {
     @Override
     public void saveProfession(Profession profession) {
         professionRepository.save(profession);
+    }
+
+    @Override
+    public List<Profession> findAllProfessions() {
+        return professionRepository.findAll();
     }
 }
