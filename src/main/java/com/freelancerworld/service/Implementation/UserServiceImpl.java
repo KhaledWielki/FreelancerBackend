@@ -60,7 +60,8 @@ public class UserServiceImpl implements UserService {
 
 
 		Profession userProfession = professionRepository.findByName("Stolarz");
-		user.setProfessions(new HashSet<Profession>(Arrays.asList(userProfession)));
+		Profession userProfession2 = professionRepository.findByName("Hydraulik");
+		user.setProfessions(new HashSet<Profession>(Arrays.asList(userProfession, userProfession2)));
 		userRepository.save(user);
 	}
 
