@@ -47,7 +47,8 @@ public class RESTUserController {
     @RequestMapping(value = "/professionadd", method = RequestMethod.PUT)
     public @ResponseBody User addProfession(@RequestBody User user) {
         User tempUser = userService.findUserById(user.getId());
-        tempUser.setProfessions(user.getProfessions());
+        //tempUser.setProfessions(user.getProfessions());
+
         userService.updateProfession(tempUser);
 
         return userService.findUserById(user.getId());
