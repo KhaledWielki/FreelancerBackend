@@ -24,12 +24,12 @@ public class RESTController {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody User signIn(@RequestBody User user) {
         return userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody void register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists == null) {
