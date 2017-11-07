@@ -54,11 +54,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateProfession(User user) {
-		//Set<Profession> professions = new HashSet<Profession>();
-		//professions = user.getProfessions();
-
-
+	public void updateProfession(User user, List<Profession> professions) {
 		Profession userProfession = professionRepository.findByName("Stolarz");
 		Profession userProfession2 = professionRepository.findByName("Hydraulik");
 		user.setProfessions(new HashSet<Profession>(Arrays.asList(userProfession, userProfession2)));

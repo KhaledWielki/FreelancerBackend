@@ -1,6 +1,8 @@
 package com.freelancerworld.controller;
 
+import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.User;
+import com.freelancerworld.model.UserProfessionContext;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,12 +47,18 @@ public class RESTUserController {
     }
 
     @RequestMapping(value = "/professionadd", method = RequestMethod.PUT)
-    public @ResponseBody User addProfession(@RequestBody User user) {
-        User tempUser = userService.findUserById(user.getId());
+    public @ResponseBody User addProfession(@RequestBody UserProfessionContext userProfessionContext) {
+        List<Profession> listOfProfessions = userProfessionContext.getProfessions();
+        for(Profession prof : listOfProfessions) {
+            System.out.println("ELEMENT: "+prof.getName());
+        }
+        User tempUser = userService.findUserById(userProfessionContext.getUser().getId());
+
+        //System.out.println("PROFESJA: " +userProfessionContext.getProfession().getName());
         //tempUser.setProfessions(user.getProfessions());
 
-        userService.updateProfession(tempUser);
+        //userService.updateProfession(tempUser);
 
-        return userService.findUserById(user.getId());
+        return userService.findUserById(userProfessionContext.getUser().getId());
     }
 }
