@@ -1,9 +1,6 @@
 package com.freelancerworld.service.Implementation;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.freelancerworld.model.Profession;
 import com.freelancerworld.repository.ProfessionRepository;
@@ -54,10 +51,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateProfession(User user, List<Profession> professions) {
-		Profession userProfession = professionRepository.findByName("Stolarz");
-		Profession userProfession2 = professionRepository.findByName("Hydraulik");
-		user.setProfessions(new HashSet<Profession>(Arrays.asList(userProfession, userProfession2)));
+	public void updateProfession(User user, Set<Profession> professions) {
+		Set<Profession> profSet = new HashSet<Profession>();
+
+		for (Profession prof : professions) {
+			Profession userProfession = professionRepository.findByName(prof.getName());
+			profSet.add(userProfession);
+		}
+
+		user.setProfessions(profSet);
 		userRepository.save(user);
 	}
 

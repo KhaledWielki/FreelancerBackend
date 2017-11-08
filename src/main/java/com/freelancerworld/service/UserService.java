@@ -4,6 +4,7 @@ import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 	public User findUserByEmail(String email);
@@ -12,5 +13,5 @@ public interface UserService {
 	public void addAdminPermissions(User user);
 	public List<User> findAll();
 	public User findUserByEmailAndPassword(String email, String password);
-	public void updateProfession(User user, List<Profession> professions);
+	public void updateProfession(User user, Set<Profession> professions);
 }

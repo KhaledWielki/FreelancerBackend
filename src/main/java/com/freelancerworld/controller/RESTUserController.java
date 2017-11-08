@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by AdamR on 2017-10-31.
@@ -48,16 +49,10 @@ public class RESTUserController {
 
     @RequestMapping(value = "/professionadd", method = RequestMethod.PUT)
     public @ResponseBody User addProfession(@RequestBody UserProfessionContext userProfessionContext) {
-        List<Profession> listOfProfessions = userProfessionContext.getProfessions();
-        for(Profession prof : listOfProfessions) {
-            System.out.println("ELEMENT: "+prof.getName());
-        }
+        Set<Profession> setOfProfessions = userProfessionContext.getProfessions();
         User tempUser = userService.findUserById(userProfessionContext.getUser().getId());
 
-        //System.out.println("PROFESJA: " +userProfessionContext.getProfession().getName());
-        //tempUser.setProfessions(user.getProfessions());
-
-        //userService.updateProfession(tempUser);
+        userService.updateProfession(tempUser, setOfProfessions);
 
         return userService.findUserById(userProfessionContext.getUser().getId());
     }
