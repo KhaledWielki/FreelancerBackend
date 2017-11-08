@@ -1,5 +1,6 @@
 package com.freelancerworld.controller;
 
+import com.freelancerworld.model.Message;
 import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.User;
 import com.freelancerworld.model.UserProfessionContext;
@@ -35,10 +36,14 @@ public class RESTUserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public @ResponseBody void register(@RequestBody User user) {
+    public @ResponseBody
+    Message register(@RequestBody User user) {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists == null) {
             userService.saveUser(user);
+            return new Message(1, "User has been registered");
+        } else {
+            return new Message (0, "Registration failed");
         }
     }
 
