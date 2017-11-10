@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -52,6 +53,9 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_request", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
 	private Set<Request> requestsSet;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Request> requestList;
 
 	public int getId() {
 		return id;
@@ -123,5 +127,14 @@ public class User {
 
 	public void setRequestsSet(Set<Request> requestsSet) {
 		this.requestsSet = requestsSet;
+	}
+
+	@JsonManagedReference
+	public List<Request> getRequestList() {
+		return requestList;
+	}
+
+	public void setRequestList(List<Request> requestList) {
+		this.requestList = requestList;
 	}
 }

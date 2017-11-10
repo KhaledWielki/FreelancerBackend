@@ -1,5 +1,6 @@
 package com.freelancerworld.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -22,6 +23,9 @@ public class Profession{
     @NotEmpty(message = "Please add profession name")
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profession")
+    private List<Request> requests;
+
     public int getId() {
         return id;
     }
@@ -36,5 +40,14 @@ public class Profession{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonManagedReference
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 }

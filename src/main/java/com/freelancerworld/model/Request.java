@@ -1,5 +1,7 @@
 package com.freelancerworld.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -94,6 +96,7 @@ public class Request {
         this.description = description;
     }
 
+    @JsonBackReference
     public Profession getProfession() {
         return profession;
     }
@@ -102,6 +105,7 @@ public class Request {
         this.profession = profession;
     }
 
+    @JsonBackReference
     public Address getAddress() {
         return address;
     }
@@ -110,6 +114,7 @@ public class Request {
         this.address = address;
     }
 
+    @JsonBackReference
     public User getUser() {
         return user;
     }
