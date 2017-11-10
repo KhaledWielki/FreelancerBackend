@@ -3,7 +3,7 @@ package com.freelancerworld.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by AdamR on 2017-10-31.
