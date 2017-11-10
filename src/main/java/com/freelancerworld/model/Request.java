@@ -3,6 +3,7 @@ package com.freelancerworld.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -32,6 +33,9 @@ public class Request {
 
     @Column(name = "active")
     private int active;
+
+    @Column(name = "creation_date")
+    private Date creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profession_id")
@@ -115,5 +119,13 @@ public class Request {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }
