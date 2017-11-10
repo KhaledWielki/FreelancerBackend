@@ -1,10 +1,7 @@
 package com.freelancerworld.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by AdamR on 2017-10-31.
