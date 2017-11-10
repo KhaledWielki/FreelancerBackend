@@ -22,9 +22,6 @@ public class Profession{
     @NotEmpty(message = "Please add profession name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profession")
-    private List<Request> requests;
-
     public int getId() {
         return id;
     }
@@ -39,13 +36,5 @@ public class Profession{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
     }
 }

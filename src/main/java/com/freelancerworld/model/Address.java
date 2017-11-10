@@ -31,9 +31,6 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
-    private List<Request> requests;
-
     public int getId() {
         return id;
     }
@@ -72,14 +69,6 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
     }
 
     public int getHouseNumber() {
