@@ -16,9 +16,6 @@ public class Address {
     @Column(name = "address_id")
     private int id;
 
-    @Column(name = "country")
-    private String country;
-
     @Column(name = "city")
     private String city;
 
@@ -28,8 +25,8 @@ public class Address {
     @Column(name = "building_number")
     private String buildingNumber;
 
-    @Column(name = "occupation_number")
-    private String occupationNumber;
+    @Column(name = "house_number")
+    private int houseNumber;
 
     @Column(name = "postal_code")
     private String postalCode;
@@ -43,14 +40,6 @@ public class Address {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getCity() {
@@ -77,14 +66,6 @@ public class Address {
         this.buildingNumber = buildingNumber;
     }
 
-    public String getOccupationNumber() {
-        return occupationNumber;
-    }
-
-    public void setOccupationNumber(String occupationNumber) {
-        this.occupationNumber = occupationNumber;
-    }
-
     public String getPostalCode() {
         return postalCode;
     }
@@ -99,5 +80,13 @@ public class Address {
 
     public void setRequests(List<Request> requests) {
         this.requests = requests;
+    }
+
+    public int getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
     }
 }

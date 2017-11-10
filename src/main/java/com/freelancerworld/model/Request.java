@@ -27,8 +27,8 @@ public class Request {
     @Column(name = "max_payment")
     private int maxPayment;
 
-    @Column(name = "deposit")
-    private int deposit;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "active")
     private int active;
@@ -77,19 +77,43 @@ public class Request {
         this.maxPayment = maxPayment;
     }
 
-    public int getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(int deposit) {
-        this.deposit = deposit;
-    }
-
     public int getActive() {
         return active;
     }
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Profession getProfession() {
+        return profession;
+    }
+
+    public void setProfession(Profession profession) {
+        this.profession = profession;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

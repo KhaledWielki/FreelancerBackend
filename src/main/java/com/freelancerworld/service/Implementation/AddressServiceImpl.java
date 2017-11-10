@@ -17,8 +17,8 @@ public class AddressServiceImpl implements AddressService {
     AddressRepository addressRepository;
 
     @Override
-    public Address findAddress(String city, String street, String buildingNumber, String occupationNumber) {
-        return addressRepository.findAddressByCityAndStreetAndBuildingNumberAndOccupationNumber(city, street, buildingNumber, occupationNumber);
+    public Address findAddress(String city, String street, String buildingNumber, int houseNumber) {
+        return addressRepository.findAddressByCityAndStreetAndBuildingNumberAndHouseNumber(city, street, buildingNumber, houseNumber);
     }
 
     @Override

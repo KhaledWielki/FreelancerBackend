@@ -7,6 +7,6 @@ import com.freelancerworld.model.Address;
  */
 public interface AddressService {
 
-    public Address findAddress(String city, String street, String buildingNumber, String occupationNumber);
+    public Address findAddress(String city, String street, String buildingNumber, int houseNumber);
     public void saveAddress(Address address);
 }
