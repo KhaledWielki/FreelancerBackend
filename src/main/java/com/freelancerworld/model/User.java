@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -129,7 +129,7 @@ public class User {
 		this.requestsSet = requestsSet;
 	}
 
-	@JsonManagedReference
+	@JsonBackReference
 	public List<Request> getRequestList() {
 		return requestList;
 	}

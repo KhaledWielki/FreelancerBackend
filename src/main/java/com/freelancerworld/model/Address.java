@@ -1,6 +1,6 @@
 package com.freelancerworld.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -76,7 +76,7 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public List<Request> getRequests() {
         return requests;
     }

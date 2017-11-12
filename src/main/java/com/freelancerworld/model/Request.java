@@ -1,6 +1,6 @@
 package com.freelancerworld.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -36,15 +36,15 @@ public class Request {
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profession_id")
     private Profession profession;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -96,7 +96,7 @@ public class Request {
         this.description = description;
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public Profession getProfession() {
         return profession;
     }
@@ -105,7 +105,7 @@ public class Request {
         this.profession = profession;
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public Address getAddress() {
         return address;
     }
@@ -114,7 +114,7 @@ public class Request {
         this.address = address;
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public User getUser() {
         return user;
     }
