@@ -1,5 +1,6 @@
 package com.freelancerworld.service;
 
+import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.Request;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface RequestService {
     public Request findRequestByTitle(String title);
     public void saveRequest(Request request);
     public List<Request> findAllRequests();
+    public List<Request> findByProfession(Profession profession);
 }

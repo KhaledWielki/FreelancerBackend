@@ -1,5 +1,6 @@
 package com.freelancerworld.repository;
 
+import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.Request;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
     Request findByTitle(String title);
     List<Request> findAll();
+    List<Request> findByProfession(Profession profession);
 }

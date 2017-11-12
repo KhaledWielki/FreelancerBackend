@@ -1,5 +1,6 @@
 package com.freelancerworld.service.Implementation;
 
+import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.Request;
 import com.freelancerworld.repository.RequestRepository;
 import com.freelancerworld.service.RequestService;
@@ -31,5 +32,10 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public List<Request> findAllRequests() {
         return requestRepository.findAll();
+    }
+
+    @Override
+    public List<Request> findByProfession(Profession profession) {
+        return requestRepository.findByProfession(profession);
     }
 }

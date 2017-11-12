@@ -1,9 +1,6 @@
 package com.freelancerworld.controller;
 
-import com.freelancerworld.model.Message;
-import com.freelancerworld.model.Profession;
-import com.freelancerworld.model.User;
-import com.freelancerworld.model.UserProfessionContext;
+import com.freelancerworld.model.*;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
