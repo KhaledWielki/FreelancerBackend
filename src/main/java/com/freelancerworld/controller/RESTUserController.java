@@ -23,7 +23,7 @@ public class RESTUserController {
     @Autowired
     private UserServiceImpl userService;
 
-    @RequestMapping("/getget")
+    @RequestMapping("/getall")
     public List<User> findAll() {
         return userService.findAll();
     }
