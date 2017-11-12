@@ -1,5 +1,6 @@
 package com.freelancerworld.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -114,7 +115,7 @@ public class Request {
         this.address = address;
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public User getUser() {
         return user;
     }
