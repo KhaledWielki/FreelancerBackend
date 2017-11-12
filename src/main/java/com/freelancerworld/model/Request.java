@@ -1,7 +1,7 @@
 package com.freelancerworld.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,8 +12,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "request")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Request implements java.io.Serializable {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,6 +97,7 @@ public class Request implements java.io.Serializable {
         this.description = description;
     }
 
+    @JsonManagedReference
     public Profession getProfession() {
         return profession;
     }
@@ -106,6 +106,7 @@ public class Request implements java.io.Serializable {
         this.profession = profession;
     }
 
+    @JsonManagedReference
     public Address getAddress() {
         return address;
     }
@@ -114,6 +115,7 @@ public class Request implements java.io.Serializable {
         this.address = address;
     }
 
+    @JsonBackReference
     public User getUser() {
         return user;
     }
