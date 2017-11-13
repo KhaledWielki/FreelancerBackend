@@ -1,14 +1,13 @@
 package com.freelancerworld.controller;
 
-import com.freelancerworld.model.Message;
-import com.freelancerworld.model.Profession;
-import com.freelancerworld.model.User;
-import com.freelancerworld.model.UserProfessionContext;
+import com.freelancerworld.model.*;
+import com.freelancerworld.service.Implementation.RequestServiceImpl;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +21,9 @@ public class RESTUserController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private RequestServiceImpl requestService;
 
     @RequestMapping("/getget")
     public List<User> findAll() {
@@ -50,6 +52,24 @@ public class RESTUserController {
     @RequestMapping(value = "/findbyid", method = RequestMethod.POST)
     public @ResponseBody User findById(@RequestBody User user) {
         return userService.findUserById(user.getId());
+    }
+
+    @RequestMapping(value = "/findrequests/{userId}")
+    public List<Request> getRequestsForSpecificUser (@PathVariable("userId") int userId) {
+        User user = userService.findUserById(userId);
+        Set<Profession> professions = user.getProfessions();
+
+        List<Request> requests = requestService.findAllRequests();
+
+        List<Request> requestsForSpecificUser = new ArrayList<Request>();
+        for (Request req : requests) {
+            for (Profession prof : professions) {
+                if ((prof.getName() == req.getProfession().getName()) && req.getActive() == 1) {
+                    requestsForSpecificUser.add(req);
+                }
+            }
+        }
+        return requestsForSpecificUser;
     }
 
     @RequestMapping(value = "/professionadd", method = RequestMethod.PUT)
