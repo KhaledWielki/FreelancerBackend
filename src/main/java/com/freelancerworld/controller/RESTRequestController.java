@@ -39,6 +39,7 @@ public class RESTRequestController {
         @RequestMapping(value = "/newrequest", method = RequestMethod.POST)
         public @ResponseBody Message addRequest(@RequestBody UserAddressRequestProfessionContext context) {
                 addressService.saveAddress(context.getAddress());
+                int active = 1;
 
                 User tempUser = userService.findUserById(context.getUser().getId());
                 Profession tempProfession = professionService.findProfessionByName(context.getProfession().getName());
@@ -46,8 +47,9 @@ public class RESTRequestController {
                 context.getRequest().setAddress(context.getAddress());
                 context.getRequest().setUser(tempUser);
                 context.getRequest().setProfession(tempProfession);
+                context.getRequest().setActive(active);
 
                 requestService.saveRequest(context.getRequest());
-                return new Message(1, "Success!");
+                return new Message(201, "Success!");
         }
 }
