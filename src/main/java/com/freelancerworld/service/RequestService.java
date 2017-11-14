@@ -10,6 +10,7 @@ import java.util.List;
 public interface RequestService {
 
     public Request findRequestByTitle(String title);
+    public Request findRequestById(long id);
     public void saveRequest(Request request);
     public List<Request> findAllRequests();
 }

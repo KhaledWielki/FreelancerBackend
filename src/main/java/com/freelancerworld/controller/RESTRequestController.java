@@ -36,6 +36,14 @@ public class RESTRequestController {
             return requestService.findAllRequests();
         }
 
+        @RequestMapping(value = "/getrequest/{requestId}", method = RequestMethod.POST)
+        public @ResponseBody Request getSelectedRequest(@PathVariable long requestId) {
+                System.out.println(requestId);
+
+                Request tempRequest = requestService.findRequestById(requestId);
+                return tempRequest;
+        }
+
         @RequestMapping(value = "/newrequest", method = RequestMethod.POST)
         public @ResponseBody Message addRequest(@RequestBody UserAddressRequestProfessionContext context) {
                 addressService.saveAddress(context.getAddress());
