@@ -1,4 +1,9 @@
-package com.freelancerworld.model;
+package com.freelancerworld.model.contexts;
+
+import com.freelancerworld.model.Address;
+import com.freelancerworld.model.Profession;
+import com.freelancerworld.model.Request;
+import com.freelancerworld.model.User;
 
 public class UserAddressRequestProfessionContext {
     private User user;

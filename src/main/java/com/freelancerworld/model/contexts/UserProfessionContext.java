@@ -1,4 +1,7 @@
-package com.freelancerworld.model;
+package com.freelancerworld.model.contexts;
+
+import com.freelancerworld.model.Profession;
+import com.freelancerworld.model.User;
 
 import java.util.Set;
 

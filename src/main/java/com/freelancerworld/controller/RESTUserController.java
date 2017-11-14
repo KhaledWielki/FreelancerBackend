@@ -1,6 +1,7 @@
 package com.freelancerworld.controller;
 
 import com.freelancerworld.model.*;
+import com.freelancerworld.model.contexts.UserProfessionContext;
 import com.freelancerworld.service.Implementation.RequestServiceImpl;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
