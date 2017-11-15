@@ -1,6 +1,7 @@
 package com.freelancerworld.service;
 
 import com.freelancerworld.model.Profession;
+import com.freelancerworld.model.Request;
 import com.freelancerworld.model.User;
 
 import java.util.List;

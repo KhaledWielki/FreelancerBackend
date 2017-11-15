@@ -3,6 +3,7 @@ package com.freelancerworld.service.Implementation;
 import java.util.*;
 
 import com.freelancerworld.model.Profession;
+import com.freelancerworld.model.Request;
 import com.freelancerworld.repository.ProfessionRepository;
 import com.freelancerworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

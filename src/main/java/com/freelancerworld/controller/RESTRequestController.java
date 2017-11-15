@@ -36,8 +36,8 @@ public class RESTRequestController {
             return requestService.findAllRequests();
         }
 
-        @RequestMapping(value = "/getrequest/{requestId}", method = RequestMethod.POST)
-        public @ResponseBody Request getSelectedRequest(@PathVariable long requestId) {
+        @RequestMapping(value = "/getrequest/{requestId}")
+        public Request getSelectedRequest(@PathVariable long requestId) {
                 System.out.println(requestId);
 
                 Request tempRequest = requestService.findRequestById(requestId);
