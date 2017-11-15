@@ -38,6 +38,9 @@ public class Request implements java.io.Serializable {
     @Column(name = "creation_date")
     private Date creationDate;
 
+    @Column(name = "request_taker_id")
+    private int requestTakerId;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profession_id")
     private Profession profession;
@@ -128,5 +131,13 @@ public class Request implements java.io.Serializable {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getRequestTakerId() {
+        return requestTakerId;
+    }
+
+    public void setRequestTakerId(int requestTakerId) {
+        this.requestTakerId = requestTakerId;
     }
 }

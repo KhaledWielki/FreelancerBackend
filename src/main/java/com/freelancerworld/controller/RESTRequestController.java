@@ -18,6 +18,8 @@ import java.util.List;
 @RequestMapping("/request")
 public class RESTRequestController {
 
+        private int YES = 1;
+        private int NO = 0;
 
         @Autowired
         private RequestServiceImpl requestService;
@@ -38,8 +40,6 @@ public class RESTRequestController {
 
         @RequestMapping(value = "/getrequest/{requestId}")
         public Request getSelectedRequest(@PathVariable long requestId) {
-                System.out.println(requestId);
-
                 Request tempRequest = requestService.findRequestById(requestId);
                 return tempRequest;
         }
@@ -47,7 +47,6 @@ public class RESTRequestController {
         @RequestMapping(value = "/newrequest", method = RequestMethod.POST)
         public @ResponseBody Message addRequest(@RequestBody UserAddressRequestProfessionContext context) {
                 addressService.saveAddress(context.getAddress());
-                int active = 1;
 
                 User tempUser = userService.findUserById(context.getUser().getId());
                 Profession tempProfession = professionService.findProfessionByName(context.getProfession().getName());
@@ -55,9 +54,33 @@ public class RESTRequestController {
                 context.getRequest().setAddress(context.getAddress());
                 context.getRequest().setUser(tempUser);
                 context.getRequest().setProfession(tempProfession);
-                context.getRequest().setActive(active);
+                context.getRequest().setActive(YES);
 
                 requestService.saveRequest(context.getRequest());
                 return new Message(201, "Success!");
+        }
+
+
+    /**
+     *
+     * @param requestTakerId
+     * @return new Message
+     *
+     * TODO
+     * Patryk, samo ustawianie działa, trzeba dodać jeszcze przekazywanie ID requesta, poza tym działa ja idę spać
+     */
+    @RequestMapping(value = "/addRequestTaker/{requestTakerId}", method = RequestMethod.POST)
+        public @ResponseBody Message addNextUserToRequestQueue(@PathVariable int requestTakerId) {
+                Request tempRequest = requestService.findRequestById(2); // <- tu jest na sztywno dodane, wywalić
+
+                if(userService.findUserById(requestTakerId) != null) {
+                    tempRequest.setRequestTakerId(requestTakerId);
+                    requestService.saveRequest(tempRequest);
+                    User requestTaker = userService.findUserById(requestTakerId);
+                    return new Message(201, "Great! You selected " + requestTaker.getName() + " " + requestTaker.getLastName());
+                }
+                else {
+                    return new Message(202, "Sorry, something bad happened");
+                }
         }
 }
