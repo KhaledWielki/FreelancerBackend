@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -61,12 +63,15 @@ public class RESTUserController {
         Set<Profession> professions = user.getProfessions();
 
         List<Request> requests = requestService.findAllRequests();
+        LocalDate todayLocalDate = LocalDate.now();
 
         List<Request> requestsForSpecificUser = new ArrayList<Request>();
         for (Request req : requests) {
             for (Profession prof : professions) {
                 if ((prof.getName() == req.getProfession().getName()) && req.getActive() == 1) {
-                    requestsForSpecificUser.add(req);
+                    if(ChronoUnit.DAYS.between(req.getCreationDate().toLocalDate(),todayLocalDate) <= 7) {
+                        requestsForSpecificUser.add(req);
+                    }
                 }
             }
         }
