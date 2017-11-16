@@ -55,6 +55,7 @@ public class RESTRequestController {
                 context.getRequest().setUser(tempUser);
                 context.getRequest().setProfession(tempProfession);
                 context.getRequest().setActive(YES);
+                context.getRequest().setRequestTakerId(0);
 
                 requestService.saveRequest(context.getRequest());
                 return new Message(201, "Success!");
