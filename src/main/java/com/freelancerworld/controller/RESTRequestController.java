@@ -64,15 +64,14 @@ public class RESTRequestController {
 
     /**
      *
+     * @param requestId
      * @param requestTakerId
      * @return new Message
      *
-     * TODO
-     * Patryk, samo ustawianie działa, trzeba dodać jeszcze przekazywanie ID requesta, poza tym działa ja idę spać
      */
-    @RequestMapping(value = "/addRequestTaker/{requestTakerId}", method = RequestMethod.POST)
-        public @ResponseBody Message addNextUserToRequestQueue(@PathVariable int requestTakerId) {
-                Request tempRequest = requestService.findRequestById(2); // <- tu jest na sztywno dodane, wywalić
+    @RequestMapping(value = "/addRequestTaker/{requestId}/{requestTakerId}", method = RequestMethod.POST)
+        public @ResponseBody Message addNextUserToRequestQueue(@PathVariable int requestId, @PathVariable int requestTakerId) {
+                Request tempRequest = requestService.findRequestById(requestId);
 
                 if(userService.findUserById(requestTakerId) != null) {
                     tempRequest.setRequestTakerId(requestTakerId);
