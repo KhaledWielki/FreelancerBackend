@@ -70,7 +70,7 @@ public class RESTRequestController {
      *
      */
     @RequestMapping(value = "/addRequestTaker/{requestId}/{requestTakerId}", method = RequestMethod.POST)
-        public @ResponseBody Message addNextUserToRequestQueue(@PathVariable int requestId, @PathVariable int requestTakerId) {
+        public @ResponseBody Message addRequestTakerToRequest(@PathVariable int requestId, @PathVariable int requestTakerId) {
                 Request tempRequest = requestService.findRequestById(requestId);
 
                 if(userService.findUserById(requestTakerId) != null) {
