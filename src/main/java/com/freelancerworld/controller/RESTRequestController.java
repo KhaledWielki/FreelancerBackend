@@ -69,8 +69,8 @@ public class RESTRequestController {
      * @return new Message
      *
      */
-    @RequestMapping(value = "/addRequestTaker/{requestId}/{requestTakerId}", method = RequestMethod.POST)
-        public @ResponseBody Message addRequestTakerToRequest(@PathVariable int requestId, @PathVariable int requestTakerId) {
+    @RequestMapping(value = "/addrequesttaker/{requestId}/{requestTakerId}")
+        public Message addRequestTakerToRequest(@PathVariable int requestId, @PathVariable int requestTakerId) {
                 Request tempRequest = requestService.findRequestById(requestId);
 
                 if(userService.findUserById(requestTakerId) != null) {
