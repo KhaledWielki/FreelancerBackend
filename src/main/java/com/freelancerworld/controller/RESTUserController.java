@@ -48,7 +48,7 @@ public class RESTUserController {
             userService.saveUser(user);
             return new Message(1, "User has been registered");
         } else {
-            return new Message (0, "Registration failed");
+            return new Message (0, "Registration failed - user exists");
         }
     }
 
