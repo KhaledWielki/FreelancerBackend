@@ -43,6 +43,9 @@ public class User {
 	@NotEmpty(message = "Please provide your phone number for contact")
 	private String phoneNumber;
 
+	@Column(name = "description")
+	private String description;
+
 	@Column(name = "active")
 	private int active;
 
@@ -56,10 +59,10 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_request", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
-	private Set<Request> requestsSet;
+	private Set<Request> requestsContractors;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private List<Request> requestList;
+	private List<Request> requests;
 
 	public int getId() {
 		return id;
@@ -117,6 +120,14 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -133,20 +144,21 @@ public class User {
 		this.professions = professions;
 	}
 
-	public Set<Request> getRequestsSet() {
-		return requestsSet;
+
+	public Set<Request> getRequestsContractors() {
+		return requestsContractors;
 	}
 
-	public void setRequestsSet(Set<Request> requestsSet) {
-		this.requestsSet = requestsSet;
+	public void setRequestsContractors(Set<Request> requestsContractors) {
+		this.requestsContractors = requestsContractors;
 	}
 
 	@JsonBackReference
-	public List<Request> getRequestList() {
-		return requestList;
+	public List<Request> getRequests() {
+		return requests;
 	}
 
-	public void setRequestList(List<Request> requestList) {
-		this.requestList = requestList;
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
 	}
 }
