@@ -5,6 +5,7 @@ import java.util.*;
 import com.freelancerworld.model.Profession;
 import com.freelancerworld.model.Request;
 import com.freelancerworld.repository.ProfessionRepository;
+import com.freelancerworld.repository.RequestRepository;
 import com.freelancerworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
 	@Autowired
 	private ProfessionRepository professionRepository;
+	@Autowired
+	private RequestRepository requestRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -61,6 +64,19 @@ public class UserServiceImpl implements UserService {
 		}
 
 		user.setProfessions(profSet);
+		userRepository.save(user);
+	}
+
+	@Override
+	public void takeRequest(User user, long requestId) {
+		Request request = requestRepository.findById(requestId);
+
+		Set<Request> requests = new HashSet<>();
+		requests = user.getRequestsContractors();
+
+		requests.add(request);
+
+		user.setRequestsContractors(requests);
 		userRepository.save(user);
 	}
 

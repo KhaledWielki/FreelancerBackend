@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -144,7 +145,7 @@ public class User {
 		this.professions = professions;
 	}
 
-
+	@JsonBackReference
 	public Set<Request> getRequestsContractors() {
 		return requestsContractors;
 	}
