@@ -101,4 +101,11 @@ public class RESTUserController {
             return new Message(201, "FAILURE - request has not been taken");
         }
     }
+
+    @RequestMapping(value = "/showacceptedrequests/{userId}", method = RequestMethod.POST)
+    public Set<Request> addProfession(@PathVariable("userId") int userId) {
+        User user = userService.findUserById(userId);
+        Set<Request> acceptedRequests = user.getRequestsContractors();
+        return acceptedRequests;
+    }
 }
