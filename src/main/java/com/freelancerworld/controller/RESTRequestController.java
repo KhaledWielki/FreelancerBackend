@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Patron on 10.11.2017.
@@ -91,5 +92,13 @@ public class RESTRequestController {
             } else {
                 return new Message(202, "Sorry, something bad happened");
             }
+    }
+
+    @RequestMapping(value = "/showcontractors/{requestId}", method = RequestMethod.POST)
+    public Set<User> addRequestTakerToRequest(@PathVariable("requestId") int requestId) {
+        Request request = requestService.findRequestById(requestId);
+        Set<User> contractors = request.getContractors();
+
+        return contractors;
     }
 }

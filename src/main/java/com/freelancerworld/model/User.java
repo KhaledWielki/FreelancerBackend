@@ -145,7 +145,6 @@ public class User {
 		this.professions = professions;
 	}
 
-	@JsonBackReference
 	public Set<Request> getRequestsContractors() {
 		return requestsContractors;
 	}

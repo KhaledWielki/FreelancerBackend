@@ -1,10 +1,12 @@
 package com.freelancerworld.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * Created by AdamR on 2017-10-31.
@@ -52,6 +54,9 @@ public class Request implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "requestsContractors")
+    private Set<User> contractors;
 
     public long getId() {
         return id;
@@ -139,5 +144,14 @@ public class Request implements java.io.Serializable {
 
     public void setRequestTakerId(int requestTakerId) {
         this.requestTakerId = requestTakerId;
+    }
+
+    @JsonBackReference
+    public Set<User> getContractors() {
+        return contractors;
+    }
+
+    public void setContractors(Set<User> contractors) {
+        this.contractors = contractors;
     }
 }

@@ -1,4 +1,4 @@
--- POTRZEBA 2 USEROW
+-- POTRZEBA 3 USEROW
 
 INSERT INTO `request` VALUES (1, 1, '2017-11-10', 'short description', 300, 200, 2, 'Hydraulik na juz!!!', 1, 2, 1);
 INSERT INTO `request` VALUES (2, 1, '2017-11-10', 'another desc...', 700, 100, 2, 'Potrzebny kierowca do Warszawy', 2, 4, 1);
