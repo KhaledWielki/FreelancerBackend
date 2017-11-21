@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Users list</title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+
+<h1>hejka</h1>
+    <div>
+
+        <div class="col-sm-10"><h2>Users</h2></div>
+
+        <table class="table table-striped">
+            <tr>
+                <th>User Id</th>
+                <th>User first name</th>
+                <th>User last name</th>
+                <th>User email</th>
+                <th>User phone number</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="user : ${userslist}">
+                <td th:text="${user.id}">user Id</a></td>
+                <td th:text="${user.name}">user name</td>
+                <td th:text="${user.lastName}">user name</td>
+                <td th:text="${user.email}">user name</td>
+                <td th:text="${user.phoneNumber}">user name</td>
+                <th
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
