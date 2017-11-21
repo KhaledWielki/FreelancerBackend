@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Requests list</title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="panel-body">
+            <a href="#" th:href="@{/admin/home}"><span class="glyphicon glyphicon-home"></span> Home</a>
+            <br>
+            <a href="#" th:href="@{/admin/users}"><span class="glyphicon glyphicon-user"></span> Users</a>
+        </div>
+
+        <div class="col-sm-10"><h2>Requests</h2></div>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Request Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Profession name</th>
+                <th>Address id</th>
+                <th>User id</th>
+                <th>User first name</th>
+                <th>User last name</th>
+                <th>Creation date</th>
+                <th>Max payment</th>
+                <th>Min payment</th>
+                <th>User taker</th>
+                <th>Is active?</th>
+            </tr>
+            <tr th:each="request : ${requestslist}">
+                <td th:text="${request.id}"></td>
+                <td th:text="${request.title}"></td>
+                <td th:text="${request.description}"></td>
+                <td th:text="${request.profession.name}"></td>
+                <td th:text="${request.address.id}"></td>
+                <td th:text="${request.user.id}"></td>
+                <td th:text="${request.user.name}"></td>
+                <td th:text="${request.user.lastName}"></td>
+                <td th:text="${request.creationDate}"></td>
+                <td th:text="${request.maxPayment}"></td>
+                <td th:text="${request.minPayment}"></td>
+                <td th:text="${request.requestTakerId}"></td>
+                <td th:text="${request.active}"></td>
+                <td><a th:href="${'/request/edit/' + request.id}">Edit</a></td>
+                <td><a th:href="${'/request/delete/' + request.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
