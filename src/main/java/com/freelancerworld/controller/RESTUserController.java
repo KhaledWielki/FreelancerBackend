@@ -48,7 +48,7 @@ public class RESTUserController {
             userService.saveUser(user);
             return new Message(1, "User has been registered");
         } else {
-            return new Message (0, "Registration failed");
+            return new Message (0, "Registration failed - user exists");
         }
     }
 
@@ -86,5 +86,26 @@ public class RESTUserController {
         userService.updateProfession(tempUser, setOfProfessions);
 
         return userService.findUserById(userProfessionContext.getUser().getId());
+    }
+
+    @RequestMapping(value = "/contractoradd/{userId}/{requestId}", method = RequestMethod.POST)
+    public Message addProfession(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
+        User user = userService.findUserById(userId);
+
+        int allRequests = user.getRequestsContractors().size();
+        userService.takeRequest(user, requestId);
+        user = userService.findUserById(userId);
+        if (user.getRequestsContractors().size() > allRequests) {
+            return new Message(200, "Request has been taken by you");
+        } else {
+            return new Message(201, "FAILURE - request has not been taken");
+        }
+    }
+
+    @RequestMapping(value = "/showacceptedrequests/{userId}", method = RequestMethod.POST)
+    public Set<Request> addProfession(@PathVariable("userId") int userId) {
+        User user = userService.findUserById(userId);
+        Set<Request> acceptedRequests = user.getRequestsContractors();
+        return acceptedRequests;
     }
 }
