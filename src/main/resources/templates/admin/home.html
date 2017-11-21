@@ -24,7 +24,9 @@
 					<span th:utext="${userName}"></span>
 				</div>
 				<div class="panel-body">
-					<a href="#" th:href="@{/admin/users}"><span class="glyphicon glyphicon-briefcase"></span> users</a>
+					<a href="#" th:href="@{/admin/users}"><span class="glyphicon glyphicon-user"></span> Users</a>
+					<br>
+					<a href="#" th:href="@{/admin/requests}"><span class="glyphicon glyphicon-briefcase"></span> Requests</a>
 				</div>
 				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
 			</div>

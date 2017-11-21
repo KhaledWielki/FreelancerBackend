@@ -7,9 +7,12 @@
 </head>
 <body>
 <div class="container">
-
-<h1>hejka</h1>
     <div>
+        <div class="panel-body">
+            <a href="#" th:href="@{/admin/home}"><span class="glyphicon glyphicon-home"></span> Home</a>
+            <br>
+            <a href="#" th:href="@{/admin/requests}"><span class="glyphicon glyphicon-briefcase"></span> Requests</a>
+        </div>
 
         <div class="col-sm-10"><h2>Users</h2></div>
 
@@ -20,16 +23,17 @@
                 <th>User last name</th>
                 <th>User email</th>
                 <th>User phone number</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Is active?</th>
             </tr>
             <tr th:each="user : ${userslist}">
-                <td th:text="${user.id}">user Id</a></td>
-                <td th:text="${user.name}">user name</td>
-                <td th:text="${user.lastName}">user name</td>
-                <td th:text="${user.email}">user name</td>
-                <td th:text="${user.phoneNumber}">user name</td>
-                <th
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${user.active}"></td>
+                <td><a th:href="${'/user/edit/' + user.id}">Edit</a></td>
+                <td><a th:href="${'/user/delete/' + user.id}">Delete</a></td>
             </tr>
         </table>
 
