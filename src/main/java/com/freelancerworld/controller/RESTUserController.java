@@ -37,7 +37,12 @@ public class RESTUserController {
     public @ResponseBody User signIn(@RequestBody User user) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String pass = userService.findUserByEmail(user.getEmail()).getPassword();
-        return bCryptPasswordEncoder.matches(user.getPassword(), pass) ? userService.findUserByEmailAndPassword(user.getEmail(), pass) : null;
+        User tempUser = userService.findUserByEmail(user.getEmail());
+        boolean doesExist = bCryptPasswordEncoder.matches(user.getPassword(), pass);
+        if(doesExist == false || tempUser.getActive() == 0) {
+            tempUser = null;
+        }
+        return tempUser;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
