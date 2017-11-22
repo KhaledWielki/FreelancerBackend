@@ -37,4 +37,17 @@ public class RequestServiceImpl implements RequestService {
     public List<Request> findAllRequests() {
         return requestRepository.findAll();
     }
+
+    @Override
+    public void changeStatus(long id) {
+        Request tempRequest = requestRepository.findById(id);
+
+        if(tempRequest.getActive() == 0) {
+            tempRequest.setActive(1);
+        }
+        else {
+            tempRequest.setActive(0);
+        }
+        requestRepository.save(tempRequest);
+    }
 }

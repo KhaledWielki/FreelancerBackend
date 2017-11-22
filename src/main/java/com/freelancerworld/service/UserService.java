@@ -16,4 +16,5 @@ public interface UserService {
 	public User findUserByEmailAndPassword(String email, String password);
 	public void updateProfession(User user, Set<Profession> professions);
 	public void takeRequest(User user, long requestId);
+	public void changeStatus(int id);
 }

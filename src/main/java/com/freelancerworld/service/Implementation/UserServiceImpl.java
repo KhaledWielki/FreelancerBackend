@@ -91,4 +91,16 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
+	@Override
+	public void changeStatus(int id) {
+		User tempUser = userRepository.findById(id);
+
+		if(tempUser.getActive() == 0) {
+			tempUser.setActive(1);
+		}
+		else {
+			tempUser.setActive(0);
+		}
+		userRepository.save(tempUser);
+	}
 }

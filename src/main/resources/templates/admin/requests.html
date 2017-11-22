@@ -47,7 +47,7 @@
                 <td th:text="${request.requestTakerId}"></td>
                 <td th:text="${request.active}"></td>
                 <td><a th:href="${'/admin/requests/edit/' + request.id}">Edit</a></td>
-                <td><a th:href="${'/admin/requests/changeactive/' + request.id}">Delete/Activate</a></td>
+                <td><a th:href="${'/admin/requests/changestatus/' + request.id}">Change status</a></td>
             </tr>
         </table>
 

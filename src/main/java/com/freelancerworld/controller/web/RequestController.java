@@ -25,16 +25,9 @@ public class RequestController {
         return "admin/requests";
     }
 
-    @RequestMapping(value = "/admin/requests/changeactive/{id}")
-    public String deleteRequest(@PathVariable Long id) {
-        Request tempRequest = requestService.findRequestById(id);
-        if(tempRequest.getActive() == 0) {
-            tempRequest.setActive(1);
-        }
-        else {
-            tempRequest.setActive(0);
-        }
-        requestService.saveRequest(tempRequest);
+    @RequestMapping(value = "/admin/requests/changestatus/{id}")
+    public String changeStatus(@PathVariable long id) {
+        requestService.changeStatus(id);
         return "redirect:/admin/requests";
     }
 }
