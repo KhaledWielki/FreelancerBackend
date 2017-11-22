@@ -46,8 +46,8 @@
                 <td th:text="${request.minPayment}"></td>
                 <td th:text="${request.requestTakerId}"></td>
                 <td th:text="${request.active}"></td>
-                <td><a th:href="${'/request/edit/' + request.id}">Edit</a></td>
-                <td><a th:href="${'/request/delete/' + request.id}">Delete</a></td>
+                <td><a th:href="${'/admin/requests/edit/' + request.id}">Edit</a></td>
+                <td><a th:href="${'/admin/requests/changeactive/' + request.id}">Delete/Activate</a></td>
             </tr>
         </table>
 
