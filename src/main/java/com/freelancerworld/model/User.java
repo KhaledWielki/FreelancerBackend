@@ -6,7 +6,8 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,6 +15,7 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 
 	@Id
@@ -145,6 +147,7 @@ public class User {
 		this.professions = professions;
 	}
 
+	@JsonBackReference
 	public Set<Request> getRequestsContractors() {
 		return requestsContractors;
 	}
