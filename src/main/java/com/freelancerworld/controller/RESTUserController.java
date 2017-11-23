@@ -94,7 +94,7 @@ public class RESTUserController {
     }
 
     @RequestMapping(value = "/contractoradd/{userId}/{requestId}", method = RequestMethod.POST)
-    public Message addProfession(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
+    public Message addContractor(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
         User user = userService.findUserById(userId);
 
         int allRequests = user.getRequestsContractors().size();
@@ -108,7 +108,7 @@ public class RESTUserController {
     }
 
     @RequestMapping(value = "/showacceptedrequests/{userId}", method = RequestMethod.POST)
-    public Set<Request> addProfession(@PathVariable("userId") int userId) {
+    public Set<Request> showAcceptedRequests(@PathVariable("userId") int userId) {
         User user = userService.findUserById(userId);
         Set<Request> acceptedRequests = user.getRequestsContractors();
         return acceptedRequests;
