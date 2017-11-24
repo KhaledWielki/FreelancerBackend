@@ -2,10 +2,12 @@ package com.freelancerworld.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,8 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "request")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Request implements java.io.Serializable {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,8 +56,8 @@ public class Request implements java.io.Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "requestsContractors")
-    private Set<User> contractors;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "request")
+    private List<User> interestedUsers;
 
     public long getId() {
         return id;
@@ -146,12 +147,11 @@ public class Request implements java.io.Serializable {
         this.requestTakerId = requestTakerId;
     }
 
-    @JsonBackReference
-    public Set<User> getContractors() {
-        return contractors;
+    public List<User> getInterestedUsers() {
+        return interestedUsers;
     }
 
-    public void setContractors(Set<User> contractors) {
-        this.contractors = contractors;
+    public void setInterestedUsers(List<User> interestedUsers) {
+        this.interestedUsers = interestedUsers;
     }
 }
