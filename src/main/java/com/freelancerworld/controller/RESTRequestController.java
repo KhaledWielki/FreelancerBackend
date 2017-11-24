@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +49,18 @@ public class RESTRequestController {
     public Request getSelectedRequest(@PathVariable long requestId) {
             Request tempRequest = requestService.findRequestById(requestId);
             return tempRequest;
+    }
+
+    @RequestMapping(value = "/getrequests/{userId}")
+    public List<Request> getMyRequests(@PathVariable int userId) {
+        List<Request> requests = requestService.findAllRequests();
+        List<Request> myRequests = new ArrayList<>();
+        for (Request req : requests) {
+            if((req.getUser().getId() == userId) && req.getActive() == 1) {
+                myRequests.add(req);
+            }
+        }
+        return myRequests;
     }
 
     @RequestMapping(value = "/newrequest", method = RequestMethod.POST)
