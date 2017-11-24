@@ -69,15 +69,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void takeRequest(User user, long requestId) {
-//		Request request = requestRepository.findById(requestId);
-//
-//		Set<Request> requests = new HashSet<>();
-//		requests = user.getRequestsContractors();
-//
-//		requests.add(request);
-//
-//		user.setRequestsContractors(requests);
-//		userRepository.save(user);
+		Request request = requestRepository.findById(requestId);
+
+		Set<Request> requests = new HashSet<>();
+		requests = user.getRequestsContractors();
+
+		requests.add(request);
+
+		user.setRequestsContractors(requests);
+		userRepository.save(user);
 	}
 
 	@Override

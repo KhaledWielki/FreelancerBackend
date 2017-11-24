@@ -107,11 +107,11 @@ public class RESTRequestController {
             }
     }
 
-//    @RequestMapping(value = "/showcontractors/{requestId}", method = RequestMethod.POST)
-//    public Set<User> showContractors(@PathVariable("requestId") int requestId) {
-//        Request request = requestService.findRequestById(requestId);
-//        Set<User> contractors = request.getContractors();
-//
-//        return contractors;
-//    }
+    @RequestMapping(value = "/showcontractors/{requestId}", method = RequestMethod.POST)
+    public Set<User> showContractors(@PathVariable("requestId") int requestId) {
+        Request request = requestService.findRequestById(requestId);
+        Set<User> contractors = request.getContractors();
+
+        return contractors;
+    }
 }

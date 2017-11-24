@@ -93,24 +93,24 @@ public class RESTUserController {
         return userService.findUserById(userProfessionContext.getUser().getId());
     }
 
-//    @RequestMapping(value = "/contractoradd/{userId}/{requestId}", method = RequestMethod.POST)
-//    public Message addContractor(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
-//        User user = userService.findUserById(userId);
-//
-//        int allRequests = user.getRequestsContractors().size();
-//        userService.takeRequest(user, requestId);
-//        user = userService.findUserById(userId);
-//        if (user.getRequestsContractors().size() > allRequests) {
-//            return new Message(200, "Request has been taken by you");
-//        } else {
-//            return new Message(201, "FAILURE - request has not been taken");
-//        }
-//    }
+    @RequestMapping(value = "/contractoradd/{userId}/{requestId}", method = RequestMethod.POST)
+    public Message addContractor(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
+        User user = userService.findUserById(userId);
 
-//    @RequestMapping(value = "/showacceptedrequests/{userId}", method = RequestMethod.POST)
-//    public Set<Request> showAcceptedRequests(@PathVariable("userId") int userId) {
-//        User user = userService.findUserById(userId);
-//        Set<Request> acceptedRequests = user.getRequestsContractors();
-//        return acceptedRequests;
-//    }
+        int allRequests = user.getRequestsContractors().size();
+        userService.takeRequest(user, requestId);
+        user = userService.findUserById(userId);
+        if (user.getRequestsContractors().size() > allRequests) {
+            return new Message(200, "Request has been taken by you");
+        } else {
+            return new Message(201, "FAILURE - request has not been taken");
+        }
+    }
+
+    @RequestMapping(value = "/showacceptedrequests/{userId}", method = RequestMethod.POST)
+    public Set<Request> showAcceptedRequests(@PathVariable("userId") int userId) {
+        User user = userService.findUserById(userId);
+        Set<Request> acceptedRequests = user.getRequestsContractors();
+        return acceptedRequests;
+    }
 }

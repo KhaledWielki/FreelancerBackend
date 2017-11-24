@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -16,6 +15,7 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "user")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 
 	@Id
@@ -60,12 +60,12 @@ public class User {
 	@JoinTable(name = "user_profession", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "profession_id"))
 	private Set<Profession> professions;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_request", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
+	private Set<Request> requestsContractors;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Request> requests;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "request_id")
-	private Request request;
 
 	public int getId() {
 		return id;
@@ -147,20 +147,20 @@ public class User {
 		this.professions = professions;
 	}
 
+	public Set<Request> getRequestsContractors() {
+		return requestsContractors;
+	}
+
+	public void setRequestsContractors(Set<Request> requestsContractors) {
+		this.requestsContractors = requestsContractors;
+	}
+
+	@JsonBackReference
 	public List<Request> getRequests() {
 		return requests;
 	}
 
 	public void setRequests(List<Request> requests) {
 		this.requests = requests;
-	}
-
-
-	public Request getRequest() {
-		return request;
-	}
-
-	public void setRequest(Request request) {
-		this.request = request;
 	}
 }
