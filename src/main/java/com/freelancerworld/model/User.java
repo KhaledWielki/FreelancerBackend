@@ -15,7 +15,6 @@ import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "user")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 
 	@Id
@@ -147,6 +146,7 @@ public class User {
 		this.professions = professions;
 	}
 
+	@JsonBackReference(value="user-requests")
 	public Set<Request> getRequestsContractors() {
 		return requestsContractors;
 	}

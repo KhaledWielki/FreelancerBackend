@@ -14,8 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "request")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Request implements java.io.Serializable {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
