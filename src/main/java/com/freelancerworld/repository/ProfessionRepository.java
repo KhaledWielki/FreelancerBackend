@@ -14,5 +14,6 @@ import java.util.List;
 public interface ProfessionRepository extends JpaRepository<Profession, Integer> {
 
     Profession findByName(String name);
+    Profession findById(int id);
     List<Profession> findAll();
 }
