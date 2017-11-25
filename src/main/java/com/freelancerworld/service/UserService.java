@@ -17,4 +17,5 @@ public interface UserService {
 	public void updateProfession(User user, Set<Profession> professions);
 	public void takeRequest(User user, long requestId);
 	public void changeStatus(int id);
+	public void saveEditedUser(User user);
 }
