@@ -101,7 +101,7 @@ public class RESTUserController {
         userService.takeRequest(user, requestId);
         user = userService.findUserById(userId);
         if (user.getRequestsContractors().size() > allRequests) {
-            return new Message(200, "Request has been taken by you");
+            return new Message(200, "You applied to request");
         } else {
             return new Message(201, "FAILURE - request has not been taken");
         }
