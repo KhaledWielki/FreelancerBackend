@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Professions</title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="panel-body">
+            <a href="#" th:href="@{/admin/home}"><span class="glyphicon glyphicon-home"></span> Home</a>
+            <br>
+            <a href="#" th:href="@{/admin/users}"><span class="glyphicon glyphicon-user"></span> Users</a>
+            <br>
+            <a href="#" th:href="@{/admin/requests}"><span class="glyphicon glyphicon-briefcase"></span> Requests</a>
+        </div>
+
+        <div class="col-sm-10"><h2>Professions</h2></div>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Profession Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="profession : ${professionslist}">
+                <td th:text="${profession.id}"></td>
+                <td th:text="${profession.name}"></td>
+                <td><a th:href="${'/admin/profession/edit/' + profession.id}">Edit</a></td>
+                <td><a th:href="${'/admin/profession/delete/' + profession.id}">Delete profession</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
