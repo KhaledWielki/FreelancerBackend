@@ -10,6 +10,8 @@ import java.util.List;
 public interface ProfessionService {
 
     public Profession findProfessionByName(String name);
+    public Profession findProfessionById(int id);
     public void saveProfession(Profession profession);
     public List<Profession> findAllProfessions();
+    public void deleteProfessionById(int id);
 }

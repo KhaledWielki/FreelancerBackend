@@ -24,6 +24,11 @@ public class ProfessionServiceImpl implements ProfessionService {
     }
 
     @Override
+    public Profession findProfessionById(int id) {
+        return professionRepository.findById(id);
+    }
+
+    @Override
     public void saveProfession(Profession profession) {
         professionRepository.save(profession);
     }
@@ -31,5 +36,10 @@ public class ProfessionServiceImpl implements ProfessionService {
     @Override
     public List<Profession> findAllProfessions() {
         return professionRepository.findAll();
+    }
+
+    @Override
+    public void deleteProfessionById(int id) {
+        professionRepository.delete(id);
     }
 }
