@@ -103,4 +103,15 @@ public class UserServiceImpl implements UserService {
 		}
 		userRepository.save(tempUser);
 	}
+
+	@Override
+	public void saveEditedUser(User user) {
+		User tempUser = userRepository.findById(user.getId());
+		tempUser.setName(user.getName());
+		tempUser.setLastName(user.getLastName());
+		tempUser.setEmail(user.getEmail());
+		tempUser.setPhoneNumber(user.getPhoneNumber());
+		tempUser.setDescription(user.getDescription());
+		userRepository.save(tempUser);
+	}
 }
