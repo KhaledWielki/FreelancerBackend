@@ -30,4 +30,26 @@ public class RequestController {
         requestService.changeStatus(id);
         return "redirect:/admin/requests";
     }
+
+    @RequestMapping(value = "/admin/requests/edit/{id}")
+    public String editUser(@PathVariable int id, Model model) {
+        Request tempRequest = requestService.findRequestById(id);
+        model.addAttribute("request", tempRequest);
+        return "admin/requestform";
+    }
+
+    @RequestMapping(value = "request", method = RequestMethod.POST)
+    public String saveEditedUser(Request request) {
+        if(requestService.findRequestById(request.getId())!= null) {
+            requestService.saveRequest(request);
+        }
+        return "redirect:/admin/request/show/" + request.getId();
+    }
+
+    @RequestMapping(value = "admin/request/show/{id}")
+    public String showUser(@PathVariable int id, Model model) {
+        Request tempRequest = requestService.findRequestById(id);
+        model.addAttribute("request", tempRequest);
+        return "admin/requestshow";
+    }
 }
