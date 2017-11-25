@@ -33,4 +33,26 @@ public class UserController {
         userService.changeStatus(id);
         return "redirect:/admin/users";
     }
+
+    @RequestMapping(value = "/admin/users/edit/{id}")
+    public String editUser(@PathVariable int id, Model model) {
+        User tempUser = userService.findUserById(id);
+        model.addAttribute("user", tempUser);
+        return "admin/userform";
+    }
+
+    @RequestMapping(value = "user", method = RequestMethod.POST)
+    public String saveEditedUser(User user) {
+        if(userService.findUserById(user.getId())!= null) {
+            userService.saveEditedUser(user);
+        }
+        return "redirect:/admin/user/show/" + user.getId();
+    }
+
+    @RequestMapping(value = "admin/user/show/{id}")
+    public String showUser(@PathVariable int id, Model model) {
+        User tempUser = userService.findUserById(id);
+        model.addAttribute("user", tempUser);
+        return "admin/usershow";
+    }
 }
