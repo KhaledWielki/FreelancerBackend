@@ -32,14 +32,14 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/admin/requests/edit/{id}")
-    public String editUser(@PathVariable int id, Model model) {
+    public String editRequest(@PathVariable int id, Model model) {
         Request tempRequest = requestService.findRequestById(id);
         model.addAttribute("request", tempRequest);
         return "admin/requestform";
     }
 
     @RequestMapping(value = "request", method = RequestMethod.POST)
-    public String saveEditedUser(Request request) {
+    public String saveEditedRequest(Request request) {
         if(requestService.findRequestById(request.getId())!= null) {
             requestService.saveRequest(request);
         }
@@ -47,7 +47,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "admin/request/show/{id}")
-    public String showUser(@PathVariable int id, Model model) {
+    public String showRequest(@PathVariable int id, Model model) {
         Request tempRequest = requestService.findRequestById(id);
         model.addAttribute("request", tempRequest);
         return "admin/requestshow";
