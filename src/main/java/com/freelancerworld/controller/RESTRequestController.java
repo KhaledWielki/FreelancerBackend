@@ -127,4 +127,17 @@ public class RESTRequestController {
         }
         return takenRequests;
     }
+
+    @RequestMapping(value = "/editdescription", method = RequestMethod.POST)
+    public @ResponseBody Message editDescriptionOfRequest(@RequestBody Request requestToEdit) {
+        Request tempRequest = requestService.findRequestById(requestToEdit.getId());
+        if(tempRequest == null) {
+            return new Message(202, "Failure, request doesn't exist");
+        }
+        else {
+            tempRequest.setDescription(requestToEdit.getDescription());
+            requestService.saveRequest(tempRequest);
+            return new Message(201, "Success");
+        }
+    }
 }
