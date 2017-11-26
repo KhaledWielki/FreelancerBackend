@@ -141,7 +141,7 @@ public class RESTRequestController {
             average = round(average, 2);
 
             user.setAverageMark(average);
-            userService.saveUser(user);
+            userService.saveEditedUser(user);
 
             return new Message(200, "Success");
         }

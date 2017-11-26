@@ -112,6 +112,7 @@ public class UserServiceImpl implements UserService {
 		tempUser.setEmail(user.getEmail());
 		tempUser.setPhoneNumber(user.getPhoneNumber());
 		tempUser.setDescription(user.getDescription());
+		tempUser.setAverageMark(user.getAverageMark());
 		userRepository.save(tempUser);
 	}
 }
