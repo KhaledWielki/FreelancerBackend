@@ -114,4 +114,17 @@ public class RESTRequestController {
 
         return contractors;
     }
+
+    @RequestMapping(value = "/gettaken/{requestTakerId}")
+    public List<Request> getTakenRequestsByMe(@PathVariable int requestTakerId) {
+        List<Request> allRequests = requestService.findAllRequests();
+        List<Request> takenRequests = new ArrayList<>();
+
+        for (Request req : allRequests) {
+            if(req.getRequestTakerId() == requestTakerId) {
+                takenRequests.add(req);
+            }
+        }
+        return takenRequests;
+    }
 }
