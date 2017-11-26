@@ -9,12 +9,10 @@ import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -75,6 +73,7 @@ public class RESTRequestController {
             context.getRequest().setProfession(tempProfession);
             context.getRequest().setActive(YES);
             context.getRequest().setRequestTakerId(0);
+            context.getRequest().setMark(0);
 
             LocalDate todayLocalDate = LocalDate.now();
             java.sql.Date sqlDate = java.sql.Date.valueOf(todayLocalDate);
@@ -115,6 +114,40 @@ public class RESTRequestController {
         return contractors;
     }
 
+    @RequestMapping(value="/setmarkforrequest/{requestId}/{mark}",method = RequestMethod.PATCH)
+    public Message setMarkForRequest(@PathVariable int requestId, @PathVariable int mark) {
+        Request request = requestService.findRequestById(requestId);
+        if (request == null) {
+            return new Message(404, "Request does not exist!");
+        } else {
+            request.setMark(mark);
+            request.setActive(0);
+
+            requestService.saveRequest(request);
+
+            List<Request> requests = requestService.findAllRequests();
+            User user = userService.findUserById(request.getRequestTakerId());
+
+            int size = 0;
+            int sum = 0;
+            double average;
+
+            for (Request req : requests) {
+                if(req.getRequestTakerId() == request.getRequestTakerId() && req.getMark() != 0) {
+                    size++;
+                    sum = sum + req.getMark();
+                }
+            }
+            average = (double) sum / (double) size;
+            average = round(average, 2);
+
+            user.setAverageMark(average);
+            userService.saveUser(user);
+
+            return new Message(200, "You added mark to this request! Request is done!");
+        }
+    }
+
     @RequestMapping(value = "/gettaken/{requestTakerId}")
     public List<Request> getTakenRequestsByMe(@PathVariable int requestTakerId) {
         List<Request> allRequests = requestService.findAllRequests();
@@ -139,5 +172,13 @@ public class RESTRequestController {
             requestService.saveRequest(tempRequest);
             return new Message(201, "Success");
         }
+    }
+
+    private double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

@@ -46,6 +46,9 @@ public class User {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "average_mark")
+	private double averageMark;
+
 	@Column(name = "active")
 	private int active;
 
@@ -126,6 +129,14 @@ public class User {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public double getAverageMark() {
+		return averageMark;
+	}
+
+	public void setAverageMark(double averageMark) {
+		this.averageMark = averageMark;
 	}
 
 	public Set<Role> getRoles() {

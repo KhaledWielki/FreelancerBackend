@@ -40,6 +40,9 @@ public class Request {
     @Column(name = "request_taker_id")
     private int requestTakerId;
 
+    @Column(name = "mark")
+    private int mark;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profession_id")
     private Profession profession;
@@ -141,6 +144,14 @@ public class Request {
 
     public void setRequestTakerId(int requestTakerId) {
         this.requestTakerId = requestTakerId;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 
     @JsonBackReference
