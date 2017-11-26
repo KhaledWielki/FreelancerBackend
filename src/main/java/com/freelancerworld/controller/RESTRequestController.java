@@ -122,7 +122,6 @@ public class RESTRequestController {
         } else {
             request.setMark(mark);
             request.setActive(0);
-
             requestService.saveRequest(request);
 
             List<Request> requests = requestService.findRequestsByUserTakerId(request.getRequestTakerId());
