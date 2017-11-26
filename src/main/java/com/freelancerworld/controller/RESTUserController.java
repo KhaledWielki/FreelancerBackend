@@ -129,4 +129,17 @@ public class RESTUserController {
             return portfolioList;
         }
     }
+
+    @RequestMapping(value = "/editdescription", method = RequestMethod.PUT)
+    public @ResponseBody Message editDescriptionOfUser(@RequestBody User userToEdit) {
+        User tempUser= userService.findUserById(userToEdit.getId());
+        if(tempUser == null) {
+            return new Message(202, "Failure, user doesn't exist");
+        }
+        else {
+            tempUser.setDescription(userToEdit.getDescription());
+            userService.saveEditedUser(tempUser);
+            return new Message(201, "Success");
+        }
+    }
 }
