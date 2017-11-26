@@ -73,7 +73,7 @@ public class RESTUserController {
         List<Request> requestsForSpecificUser = new ArrayList<Request>();
         for (Request req : requests) {
             for (Profession prof : professions) {
-                if ((prof.getName() == req.getProfession().getName()) && req.getActive() == 1) {
+                if (prof.getName() == req.getProfession().getName() && req.getActive() == 1 && req.getRequestTakerId() != userId) {
                     if(ChronoUnit.DAYS.between(req.getCreationDate().toLocalDate(),todayLocalDate) <= 7) {
                         requestsForSpecificUser.add(req);
                     }
