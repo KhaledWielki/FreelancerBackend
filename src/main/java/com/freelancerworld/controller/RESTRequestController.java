@@ -118,14 +118,14 @@ public class RESTRequestController {
     public Message setMarkForRequest(@PathVariable int requestId, @PathVariable int mark) {
         Request request = requestService.findRequestById(requestId);
         if (request == null) {
-            return new Message(404, "Request does not exist!");
+            return new Message(404, "Failure, request does not exist");
         } else {
             request.setMark(mark);
             request.setActive(0);
 
             requestService.saveRequest(request);
 
-            List<Request> requests = requestService.findAllRequests();
+            List<Request> requests = requestService.findRequestsByUserTakerId(request.getRequestTakerId());
             User user = userService.findUserById(request.getRequestTakerId());
 
             int size = 0;
@@ -133,7 +133,7 @@ public class RESTRequestController {
             double average;
 
             for (Request req : requests) {
-                if(req.getRequestTakerId() == request.getRequestTakerId() && req.getMark() != 0) {
+                if(req.getMark() != 0) {
                     size++;
                     sum = sum + req.getMark();
                 }
@@ -144,7 +144,7 @@ public class RESTRequestController {
             user.setAverageMark(average);
             userService.saveUser(user);
 
-            return new Message(200, "You added mark to this request! Request is done!");
+            return new Message(200, "Success");
         }
     }
 

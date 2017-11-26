@@ -15,4 +15,5 @@ public interface RequestService {
     public List<Request> findAllRequests();
     public void changeStatus(long id);
     public List<Request> findRequestsByUserTakerIdAndActive(int userTakerId, int acitve);
+    public List<Request> findRequestsByUserTakerId(int userTakerId);
 }

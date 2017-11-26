@@ -61,4 +61,9 @@ public class RequestServiceImpl implements RequestService {
             return finishedRequestsByUser;
         }
     }
+
+    @Override
+    public List<Request> findRequestsByUserTakerId(int userTakerId) {
+        return requestRepository.findRequestByRequestTakerId(userTakerId);
+    }
 }
