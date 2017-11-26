@@ -50,4 +50,15 @@ public class RequestServiceImpl implements RequestService {
         }
         requestRepository.save(tempRequest);
     }
+
+    @Override
+    public List<Request> findRequestsByUserTakerIdAndActive(int userTakerId, int active) {
+        List<Request> finishedRequestsByUser = requestRepository.findRequestByRequestTakerIdAndActiveOrderByCreationDateDesc(userTakerId, active);
+        if(finishedRequestsByUser == null) {
+            return null;
+        }
+        else {
+            return finishedRequestsByUser;
+        }
+    }
 }

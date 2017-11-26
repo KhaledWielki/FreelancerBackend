@@ -14,4 +14,5 @@ public interface RequestService {
     public void saveRequest(Request request);
     public List<Request> findAllRequests();
     public void changeStatus(long id);
+    public List<Request> findRequestsByUserTakerIdAndActive(int userTakerId, int acitve);
 }

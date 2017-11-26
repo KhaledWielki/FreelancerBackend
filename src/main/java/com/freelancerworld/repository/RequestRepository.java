@@ -16,4 +16,6 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     Request findByTitle(String title);
     Request findById(long id);
     List<Request> findAll();
+    List<Request> findRequestByRequestTakerIdAndActiveOrderByCreationDateDesc(int requestTakerId, int active);
+
 }

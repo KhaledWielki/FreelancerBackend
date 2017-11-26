@@ -5,6 +5,7 @@ import com.freelancerworld.model.contexts.UserProfessionContext;
 import com.freelancerworld.service.Implementation.RequestServiceImpl;
 import com.freelancerworld.service.Implementation.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -112,5 +113,20 @@ public class RESTUserController {
         User user = userService.findUserById(userId);
         Set<Request> acceptedRequests = user.getRequestsContractors();
         return acceptedRequests;
+    }
+
+    @RequestMapping(value = "/getportfolio/{requestTakerId}", method = RequestMethod.GET)
+    public List<Request> getUserPortfolio(@PathVariable int requestTakerId) {
+        int activeNo = 0;
+        int maxRequiredCountOfRequests = 3;
+
+        List<Request> portfolioList = requestService.findRequestsByUserTakerIdAndActive(requestTakerId, activeNo);
+        if(portfolioList.size() > maxRequiredCountOfRequests) {
+            List<Request> listWith3Requests = portfolioList.subList(0, 3);
+            return listWith3Requests;
+        }
+        else {
+            return portfolioList;
+        }
     }
 }
