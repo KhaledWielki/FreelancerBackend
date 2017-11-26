@@ -56,7 +56,7 @@ public class RESTRequestController {
         List<Request> requests = requestService.findAllRequests();
         List<Request> myRequests = new ArrayList<>();
         for (Request req : requests) {
-            if((req.getUser().getId() == userId) && req.getActive() == 1) {
+            if(req.getUser().getId() == userId) {
                 myRequests.add(req);
             }
         }
