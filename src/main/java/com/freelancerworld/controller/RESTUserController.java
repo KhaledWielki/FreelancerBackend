@@ -130,7 +130,7 @@ public class RESTUserController {
         }
     }
 
-    @RequestMapping(value = "/editdescription", method = RequestMethod.PUT)
+    @RequestMapping(value = "/editdescription", method = RequestMethod.PATCH)
     public @ResponseBody Message editDescriptionOfUser(@RequestBody User userToEdit) {
         User tempUser= userService.findUserById(userToEdit.getId());
         if(tempUser == null) {

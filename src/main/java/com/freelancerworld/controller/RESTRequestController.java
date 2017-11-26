@@ -128,7 +128,7 @@ public class RESTRequestController {
         return takenRequests;
     }
 
-    @RequestMapping(value = "/editdescription", method = RequestMethod.PUT)
+    @RequestMapping(value = "/editdescription", method = RequestMethod.PATCH)
     public @ResponseBody Message editDescriptionOfRequest(@RequestBody Request requestToEdit) {
         Request tempRequest = requestService.findRequestById(requestToEdit.getId());
         if(tempRequest == null) {
