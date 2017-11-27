@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Patron on 10.11.2017.
@@ -171,6 +169,16 @@ public class RESTRequestController {
             requestService.saveRequest(tempRequest);
             return new Message(201, "Success");
         }
+    }
+
+    @RequestMapping(value = "/countcontractors", method = RequestMethod.POST)
+    public @ResponseBody Map<Integer, Integer> countContractorsForRequest(@RequestBody List<Integer> list) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (Integer id : list) {
+            Request request = requestService.findRequestById(id);
+            map.put(id, request.getContractors().size());
+        }
+        return map;
     }
 
     private double round(double value, int places) {
