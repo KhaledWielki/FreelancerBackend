@@ -105,8 +105,8 @@ public class RESTUserController {
 
         else {
             int allRequests = user.getRequestsContractors().size();
+            userService.takeRequest(user, requestId);
             if (user.getRequestsContractors().size() > allRequests) {
-                userService.takeRequest(user, requestId);
                 return new Message(200, "You applied to request");
             } else {
                 return new Message(201, "FAILURE - request has not been taken");
