@@ -97,14 +97,20 @@ public class RESTUserController {
     @RequestMapping(value = "/contractoradd/{userId}/{requestId}", method = RequestMethod.POST)
     public Message addContractor(@PathVariable("userId") int userId, @PathVariable("requestId") int requestId) {
         User user = userService.findUserById(userId);
+        Request tempRequest = requestService.findRequestById(requestId);
 
-        int allRequests = user.getRequestsContractors().size();
-        userService.takeRequest(user, requestId);
-        user = userService.findUserById(userId);
-        if (user.getRequestsContractors().size() > allRequests) {
-            return new Message(200, "You applied to request");
-        } else {
-            return new Message(201, "FAILURE - request has not been taken");
+        if(userId == tempRequest.getUser().getId()) {
+            return new Message (203, "Cannot accept own request");
+        }
+
+        else {
+            int allRequests = user.getRequestsContractors().size();
+            if (user.getRequestsContractors().size() > allRequests) {
+                userService.takeRequest(user, requestId);
+                return new Message(200, "You applied to request");
+            } else {
+                return new Message(201, "FAILURE - request has not been taken");
+            }
         }
     }
 
