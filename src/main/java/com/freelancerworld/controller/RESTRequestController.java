@@ -65,21 +65,28 @@ public class RESTRequestController {
 
             User tempUser = userService.findUserById(context.getUser().getId());
             Profession tempProfession = professionService.findProfessionByName(context.getProfession().getName());
+            int minPayment = context.getRequest().getMinPayment();
+            int maxPayment = context.getRequest().getMaxPayment();
 
-            context.getRequest().setAddress(context.getAddress());
-            context.getRequest().setUser(tempUser);
-            context.getRequest().setProfession(tempProfession);
-            context.getRequest().setActive(YES);
-            context.getRequest().setRequestTakerId(0);
-            context.getRequest().setMark(0);
+            if(minPayment > maxPayment) {
+                return new Message(202, "Min payment cannot be greater than max payment");
+            }
+            else {
+                context.getRequest().setAddress(context.getAddress());
+                context.getRequest().setUser(tempUser);
+                context.getRequest().setProfession(tempProfession);
+                context.getRequest().setActive(YES);
+                context.getRequest().setRequestTakerId(0);
+                context.getRequest().setMark(0);
 
-            LocalDate todayLocalDate = LocalDate.now();
-            java.sql.Date sqlDate = java.sql.Date.valueOf(todayLocalDate);
+                LocalDate todayLocalDate = LocalDate.now();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(todayLocalDate);
 
-            context.getRequest().setCreationDate(sqlDate);
+                context.getRequest().setCreationDate(sqlDate);
 
-            requestService.saveRequest(context.getRequest());
-            return new Message(201, "Success!");
+                requestService.saveRequest(context.getRequest());
+                return new Message(201, "Success!");
+            }
     }
 
 
